@@ -83,3 +83,15 @@ const userData = {
   currentSong: null,
   songCurrentTime: 0,
 }
+
+const playSong = id => {
+  const song = userData.songs.find((song) => song.id === id);
+  audio.src = song.src;
+  audio.title = song.title;
+  if (userData.currentSong === null) {
+    audio.currentTime = 0
+  } else {
+    audio.currentTime = userData.songCurrentTime;
+  }
+  
+}
