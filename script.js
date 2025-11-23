@@ -93,5 +93,16 @@ const playSong = id => {
   } else {
     audio.currentTime = userData.songCurrentTime;
   }
-  
+  userData.currentSong = song;
+  playButton.classList.add("playing")
+  audio.play()
 }
+
+playButton.addEventListener("click", () => {
+  if (userData.currentSong === null) {
+    playSong(userData.songs[0].id);
+  } else {
+    playSong(userData.currentSong.id);
+  }
+});
+
