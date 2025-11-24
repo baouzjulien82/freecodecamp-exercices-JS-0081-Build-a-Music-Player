@@ -1,3 +1,4 @@
+// Définition des principales variables.
 const playlistSongs = document.getElementById("playlist-songs");
 const playButton = document.getElementById("play");
 const pauseButton = document.getElementById("pause");
@@ -5,6 +6,8 @@ const nextButton = document.getElementById("next");
 const previousButton = document.getElementById("previous");
 const playingSong = document.getElementById("player-song-title");
 const songArtist = document.getElementById("player-song-artist");
+
+// Tableau contenant les différents 'objets' morceaux
 const allSongs = [
   {
     id: 0,
@@ -43,14 +46,17 @@ const allSongs = [
   },
 ];
 
+// initialisation de l'AUDIO API
 const audio = new Audio();
 
+// définition de la variable de travail audio
 const userData = {
   songs: allSongs,
   currentSong: null,
   songCurrentTime: 0,
 }
 
+// fonctions-------------------------------------------------------------------------------------------------------------------------------------------------------
 const playSong = (id, start=true) => {
   const song = userData.songs.find((song) => song.id === id);
   audio.src = song.src;
@@ -131,6 +137,7 @@ const setPlayButtonAccessibleText = () => {
   playButton.setAttribute("aria-label", userData.currentSong ? `Play ${song.title}` : "Play");
 };
 
+// EventListener --------------------------------------------------------------------------------------------------------------------------------------------------
 playButton.addEventListener("click", () => {
   if (userData.currentSong === null) {
     playSong(userData.songs[0].id);
